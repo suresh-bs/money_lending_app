@@ -25,6 +25,10 @@ Rails.application.routes.draw do
   end
 
   namespace :client do
-    resources :loans, only: [:index, :show, :new, :create]
+    resources :loans do
+      member do
+        patch :confirm
+      end
+    end
   end
 end

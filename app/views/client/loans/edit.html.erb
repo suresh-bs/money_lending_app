@@ -1,0 +1,7 @@
+<%= form_for @loan, url: client_loan_path(@loan) do |form| %>
+  <%= form.text_field :state %><br %>
+  <%= form.text_field :principal_amount %><br %>
+  <%= form.text_field :interest_rate %><br %>
+  <%= form.submit %>
+<% end %>
+<%= link_to "Confirm", confirm_client_loan_path(@loan), data: { turbo_method: :patch } %>

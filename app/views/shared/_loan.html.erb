@@ -9,7 +9,7 @@
     <% if current_user.admin? %>
       <%= link_to "Take action", edit_admin_loan_path(loan) %>
     <% else %>
-      <%= link_to "View", client_loan_path(loan) %>
+      <%= link_to "Take action", edit_client_loan_path(loan) %>
     <% end %>
   </td>
 </tr>
