@@ -1,0 +1,5 @@
+<%= form_for @loan, url: client_loans_path do |form| %>
+  principal_amount: <%= form.text_field :principal_amount %><br />
+  interest_rate: <%= form.text_field :interest_rate %><br />
+  <%= form.submit %>
+<% end %>
