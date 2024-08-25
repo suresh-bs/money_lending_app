@@ -22,7 +22,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_25_084909) do
   end
 
   create_table "loans", force: :cascade do |t|
-    t.integer "state"
+    t.integer "state", default: 0
     t.decimal "principal_amount"
     t.decimal "interest_rate"
     t.decimal "interest_amount"
