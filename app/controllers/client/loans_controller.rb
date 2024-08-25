@@ -21,6 +21,13 @@ class Client::LoansController < ApplicationController
     @loan = current_user.loans.find(params[:id])
   end
 
+  def update
+    @loan = Loan.find(params[:id])
+    @loan.update(loan_params)
+    @loan.readjustment_requested!
+    redirect_to edit_client_loan_path(@loan)
+  end
+
   def confirm
     @loan = current_user.loans.find(params[:id])
     @loan.open!
