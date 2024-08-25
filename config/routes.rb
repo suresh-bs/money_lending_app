@@ -16,7 +16,11 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   namespace :admin do
-    resources :loans, only: [:index]
+    resources :loans, only: [:index, :edit, :update] do
+      member do
+        patch :reject
+      end
+    end
   end
 
   namespace :client do

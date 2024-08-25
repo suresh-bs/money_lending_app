@@ -5,5 +5,11 @@
   <% end %>
   <td><%= loan.principal_amount %></td>
   <td><%= loan.interest_rate %></td>
-  <td><%= link_to "View", client_loan_path(loan.user, loan) %></td>
+  <td>
+    <% if current_user.admin? %>
+      <%= link_to "Take action", edit_admin_loan_path(loan) %>
+    <% else %>
+      <%= link_to "View", client_loan_path(loan) %>
+    <% end %>
+  </td>
 </tr>
