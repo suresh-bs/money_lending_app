@@ -27,6 +27,12 @@ class Client::LoansController < ApplicationController
     redirect_to edit_client_loan_path(@loan)
   end
 
+  def reject
+    @loan = current_user.loans.find(params[:id])
+    @loan.rejected!
+    redirect_to edit_client_loan_path(@loan)
+  end
+
   private
   def loan_params
     params.require(:loan).permit(:principal_amount, :interest_rate)

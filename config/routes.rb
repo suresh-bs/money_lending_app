@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   namespace :client do
     resources :loans do
       member do
+        patch :reject
         patch :confirm
       end
     end

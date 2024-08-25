@@ -5,3 +5,4 @@
   <%= form.submit %>
 <% end %>
 <%= link_to "Confirm", confirm_client_loan_path(@loan), data: { turbo_method: :patch } %>
+<%= link_to "Reject", reject_client_loan_path(@loan), data: { turbo_method: :patch } %>
