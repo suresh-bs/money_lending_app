@@ -20,6 +20,6 @@ Rails.application.routes.draw do
   end
 
   namespace :client do
-    resources :loans, only: [:index]
+    resources :loans, only: [:index, :show]
   end
 end

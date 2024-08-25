@@ -1,0 +1,5 @@
+<tr>
+  <td><%= loan.principal_amount %></td>
+  <td><%= loan.interest_rate %></td>
+  <td><%= link_to "View", client_loan_path(loan.user, loan) %></td>
+</tr>

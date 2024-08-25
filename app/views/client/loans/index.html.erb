@@ -1,1 +1,10 @@
-client loans index
+<table border="1">
+  <tr>
+    <th>principal_amount</th>
+    <th>interest_rate</th>
+    <th>action</th>
+  </tr>
+  <% @loans.each do |loan| %>
+    <%= render partial: "shared/loan", locals: {loan: loan} %>
+  <% end %>
+</table>
