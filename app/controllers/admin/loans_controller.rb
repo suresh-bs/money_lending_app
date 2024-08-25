@@ -8,6 +8,13 @@ class Admin::LoansController < ApplicationController
     @loan = Loan.find(params[:id])
   end
 
+  def update
+    @loan = Loan.find(params[:id])
+    @loan.update(loan_params)
+    @loan.waiting_for_adjustment_acceptance!
+    redirect_to edit_admin_loan_path(@loan)
+  end
+
   def reject
     @loan = Loan.find(params[:id])
     @loan.rejected!
@@ -18,5 +25,10 @@ class Admin::LoansController < ApplicationController
     @loan = Loan.find(params[:id])
     @loan.approved!
     redirect_to edit_admin_loan_path(@loan)
+  end
+
+  private
+  def loan_params
+    params.require(:loan).permit(:principal_amount, :interest_rate)
   end
 end

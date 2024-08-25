@@ -2,7 +2,7 @@
   <%= form.text_field :state %><br %>
   <%= form.text_field :principal_amount %><br %>
   <%= form.text_field :interest_rate %><br %>
-  <%= form.submit %>
+  <%= form.submit "Change and Approve" %>
 <% end %>
 <%= link_to "Reject", reject_admin_loan_path(@loan), data: { turbo_method: :patch } %>
 <%= link_to "Approve", approve_admin_loan_path(@loan), data: { turbo_method: :patch } %>
