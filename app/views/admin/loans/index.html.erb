@@ -1,1 +1,15 @@
-admin loans index
+<table border="1">
+  <tr>
+    <% if current_user.admin? %>
+      <th>name</th>
+    <% end %>
+    <th>state</th>
+    <th>principal_amount</th>
+    <th>interest_rate</th>
+    <th>action</th>
+  </tr>
+  <% @loans.each do |loan| %>
+    <%= render partial: "shared/loan", locals: {loan: loan} %>
+  <% end %>
+</table>
+<%= link_to "Request Loan", new_client_loan_path %>

@@ -1,4 +1,8 @@
 <tr>
+  <% if current_user.admin? %>
+    <td><%= loan.user&.email %></td>
+    <td><%= loan.state %></td>
+  <% end %>
   <td><%= loan.principal_amount %></td>
   <td><%= loan.interest_rate %></td>
   <td><%= link_to "View", client_loan_path(loan.user, loan) %></td>
