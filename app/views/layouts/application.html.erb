@@ -19,6 +19,7 @@
 
   <body>
     <%= link_to "Home", root_path %>
+    <%= link_to "Wallet", wallet_path %>
     <% if current_user.present? %>
       <% if current_user.admin? %>
         Logged in as Admin

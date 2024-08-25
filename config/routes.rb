@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
+  get "/wallet" => "wallets#show", as: :wallet
+
   namespace :admin do
     resources :loans, only: [:index, :edit, :update] do
       member do
