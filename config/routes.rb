@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :loans, only: [:index, :edit, :update] do
       member do
         patch :reject
+        patch :approve
       end
     end
   end
