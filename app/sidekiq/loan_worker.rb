@@ -1,3 +1,5 @@
+require 'sidekiq-scheduler'
+
 class LoanWorker
   include Sidekiq::Worker
 
