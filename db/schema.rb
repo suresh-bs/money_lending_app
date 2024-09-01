@@ -23,9 +23,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_25_084909) do
 
   create_table "loans", force: :cascade do |t|
     t.integer "state", default: 0
-    t.decimal "principal_amount"
-    t.decimal "interest_rate"
-    t.decimal "interest_amount"
+    t.decimal "principal_amount", default: "0.0"
+    t.decimal "interest_rate", default: "0.0"
+    t.decimal "interest_amount", default: "0.0"
     t.integer "user_id"
     t.datetime "next_interest_time"
     t.string "closing_remarks"

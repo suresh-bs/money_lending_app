@@ -3,6 +3,7 @@
     <th>principal_amount</th>
     <th>interest_rate</th>
     <th>action</th>
+    <th>Total Loan Amount (Principal + Interest)</th>
   </tr>
   <% @loans.each do |loan| %>
     <%= render partial: "shared/loan", locals: {loan: loan} %>

@@ -12,4 +12,7 @@
       <%= link_to "Take action", edit_client_loan_path(loan) %>
     <% end %>
   </td>
+  <% if current_user.client? && loan.state == "open" %>
+    <td><%= loan.principal_amount + loan.interest_amount %></td>
+  <% end %>
 </tr>
