@@ -11,28 +11,24 @@ class Loan < ApplicationRecord
                   readjustment_requested: 6 }
 
   before_create :assign_next_interest_time
-  after_update :transfer_amount_if_open
 
   def repaid!
     admin = User.admin.first
-    total_amount_to_pay = principal_amount + interest_amount
     admin.wallet.update(amount: admin.wallet.amount + total_amount_to_pay)
     user.wallet.update(amount: user.wallet.amount - total_amount_to_pay)
   end
 
-  private
-
-  def transfer_amount_if_open
-    if open?
-      trasfer_amount
-    end
+  def total_amount_to_pay
+    @total_amount_to_pay ||= principal_amount + interest_amount
   end
 
-  def trasfer_amount
+  def trasfer_amount!
     admin = User.admin.first
     admin.wallet.update(amount: admin.wallet.amount - principal_amount)
     user.wallet.update(amount: user.wallet.amount + principal_amount)
   end
+
+  private
 
   def assign_next_interest_time
     self.next_interest_time ||= Time.zone.now + 5.minutes

@@ -30,6 +30,7 @@ class Client::LoansController < ApplicationController
 
   def confirm
     @loan = current_user.loans.find(params[:id])
+    @loan.trasfer_amount!
     @loan.open!
     redirect_to edit_client_loan_path(@loan)
   end
