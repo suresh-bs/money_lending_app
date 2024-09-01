@@ -10,6 +10,7 @@ class Loan < ApplicationRecord
                   waiting_for_adjustment_acceptance: 5,
                   readjustment_requested: 6 }
 
+  before_create :assign_next_interest_time
   after_update :transfer_amount_if_open
 
   private
@@ -24,5 +25,9 @@ class Loan < ApplicationRecord
     admin = User.admin.first
     admin.wallet.update(amount: admin.wallet.amount - principal_amount)
     user.wallet.update(amount: user.wallet.amount + principal_amount)
+  end
+
+  def assign_next_interest_time
+    self.next_interest_time ||= Time.zone.now + 5.minutes
   end
 end
