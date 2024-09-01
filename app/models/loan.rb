@@ -13,6 +13,13 @@ class Loan < ApplicationRecord
   before_create :assign_next_interest_time
   after_update :transfer_amount_if_open
 
+  def repaid!
+    admin = User.admin.first
+    total_amount_to_pay = principal_amount + interest_amount
+    admin.wallet.update(amount: admin.wallet.amount + total_amount_to_pay)
+    user.wallet.update(amount: user.wallet.amount - total_amount_to_pay)
+  end
+
   private
 
   def transfer_amount_if_open

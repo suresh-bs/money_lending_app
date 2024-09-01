@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       member do
         patch :reject
         patch :confirm
+        patch :repay
       end
     end
   end
