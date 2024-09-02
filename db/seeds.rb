@@ -9,5 +9,5 @@
 #   end
 
 User.destroy_all
-User.create(email: "admin@example1234.com", password: "admin@example1234.com", role: :admin)
-User.create(email: "client@example1234.com", password: "client@example1234.com", role: :client)
+User.create(email: "admin@example.com", password: "admin@example.com", role: :admin)
+User.create(email: "client@example.com", password: "client@example.com", role: :client)
