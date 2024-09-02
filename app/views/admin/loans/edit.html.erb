@@ -2,7 +2,19 @@
   <%= @loan.state %><br %>
   <%= form.text_field :principal_amount %><br %>
   <%= form.text_field :interest_rate %><br %>
-  <%= form.submit "Change and Approve" %>
+  <% if @loan.requested? || @loan.readjustment_requested? %>
+    <%= form.submit "Change and Approve" %>
+  <% end %>
 <% end %>
-<%= link_to "Reject", reject_admin_loan_path(@loan), data: { turbo_method: :patch } %>
-<%= link_to "Approve", approve_admin_loan_path(@loan), data: { turbo_method: :patch } %>
+
+<% if @loan.open? %>
+  Amount to Pay: <%= @loan.total_amount_to_pay %>
+<% end %>
+
+<% if @loan.requested? || @loan.readjustment_requested? %>
+  <%= link_to "Reject", reject_admin_loan_path(@loan), data: { turbo_method: :patch } %>
+<% end %>
+
+<% if @loan.requested? || @loan.readjustment_requested? %>
+  <%= link_to "Approve", approve_admin_loan_path(@loan), data: { turbo_method: :patch } %>
+<% end %>

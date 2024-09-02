@@ -2,8 +2,23 @@
   <%= @loan.state %><br %>
   <%= form.text_field :principal_amount %><br %>
   <%= form.text_field :interest_rate %><br %>
-  <%= form.submit "Change and Request" %>
+  <% if @loan.waiting_for_adjustment_acceptance? %>
+    <%= form.submit "Change and Request" %>
+  <% end %>
 <% end %>
-<%= link_to "Confirm", confirm_client_loan_path(@loan), data: { turbo_method: :patch } %>
-<%= link_to "Reject", reject_client_loan_path(@loan), data: { turbo_method: :patch } %>
-<%= link_to "Repay", repay_client_loan_path(@loan), data: { turbo_method: :patch } %>
+<% if @loan.open? %>
+  Amount to Pay: <%= @loan.total_amount_to_pay %>
+<% end %>
+<br>
+
+<% if @loan.approved? %>
+  <%= link_to "Confirm", confirm_client_loan_path(@loan), data: { turbo_method: :patch } %>
+<% end %>
+
+<% if @loan.approved? || @loan.waiting_for_adjustment_acceptance? %>
+  <%= link_to "Reject", reject_client_loan_path(@loan), data: { turbo_method: :patch } %>
+<% end %>
+
+<% if @loan.open? %>
+  <%= link_to "Repay", repay_client_loan_path(@loan), data: { turbo_method: :patch } %>
+<% end %>

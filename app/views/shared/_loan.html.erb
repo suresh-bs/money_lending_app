@@ -6,13 +6,15 @@
   <td><%= loan.principal_amount %></td>
   <td><%= loan.interest_rate %></td>
   <td>
-    <% if current_user.admin? %>
-      <%= link_to "Take action", edit_admin_loan_path(loan) %>
-    <% else %>
-      <%= link_to "Take action", edit_client_loan_path(loan) %>
+    <% if current_user.client? && loan.state == "open" %>
+      <%= loan.principal_amount + loan.interest_amount %>
     <% end %>
   </td>
-  <% if current_user.client? && loan.state == "open" %>
-    <td><%= loan.principal_amount + loan.interest_amount %></td>
-  <% end %>
+  <td>
+    <% if current_user.admin? %>
+      <%= link_to "Show", edit_admin_loan_path(loan) %>
+    <% else %>
+      <%= link_to "Show", edit_client_loan_path(loan) %>
+    <% end %>
+  </td>
 </tr>
