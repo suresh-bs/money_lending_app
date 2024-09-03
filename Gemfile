@@ -63,3 +63,7 @@ gem "pry", "~> 0.14.2"
 gem "sidekiq", "~> 7.3"
 
 gem "sidekiq-scheduler", "~> 5.0"
+
+gem "bootstrap", "~> 5.3"
+
+gem "sassc-rails", "~> 2.1"
