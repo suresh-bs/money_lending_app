@@ -1,12 +1,2 @@
-<table border="1">
-  <tr>
-    <th>principal_amount</th>
-    <th>interest_rate</th>
-    <th>action</th>
-    <th>Total Loan Amount (Principal + Interest)</th>
-  </tr>
-  <% @loans.each do |loan| %>
-    <%= render partial: "shared/loan", locals: {loan: loan} %>
-  <% end %>
-</table>
+<%= render partial: "shared/loan", locals: {loans: @loans} %>
 <%= link_to "Request Loan", new_client_loan_path %>
