@@ -18,16 +18,28 @@
   </head>
 
   <body>
-    <%= link_to "Home", root_path %>
-    <% if current_user.present? %>
-      Wallet Amount: <b><%= current_user.wallet.amount %></b>
-      <% if current_user.admin? %>
-        Logged in as Admin
-      <% else %>
-        Logged in as Client
-      <% end %>
-      <%= link_to "Logout", session_path(current_user), data: { turbo_method: :delete } %>
-    <% end %>
-    <%= yield %>
+    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+      <div class="container-fluid">
+        <% if current_user.present? %>
+          <button type="button" class="btn btn-secondary">
+            Wallet Amount: <span class="text-warning"><%= current_user.wallet.amount %></span>
+          </button>
+        <% end %>
+          <%= link_to "Money Lending App", root_path, class: "navbar-brand" %>
+        <% if current_user.present? %>
+          <span class="navbar-text">
+            <% if current_user.admin? %>
+              Logged in as Admin
+            <% else %>
+              Logged in as Client
+            <% end %>
+            <%= link_to "Logout", session_path(current_user), data: { turbo_method: :delete } %>
+          </spam>
+        <% end %>
+      </div>
+    </nav>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

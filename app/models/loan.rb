@@ -28,6 +28,12 @@ class Loan < ApplicationRecord
     user.wallet.update(amount: user.wallet.amount + principal_amount)
   end
 
+  def state_text
+    state.split('_')
+         .map(&:capitalize)
+         .join(' ')
+  end
+
   private
 
   def assign_next_interest_time

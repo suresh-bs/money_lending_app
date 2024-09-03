@@ -1,16 +1,17 @@
-<table border="1">
+<br>
+<table class="table table-striped">
   <tr>
-    <th>state</th>
-    <th>principal_amount</th>
-    <th>interest_rate</th>
-    <th>action</th>
+    <th>State</th>
+    <th>Principal Amount</th>
+    <th>Interest Rate</th>
+    <th>ction</th>
     <% if current_user.admin? %>
       <th>Client Email</th>
     <% end %>
   </tr>
   <% loans.each do |loan| %>
     <tr>
-      <td><%= loan.state %></td>
+      <td><%= loan.state_text %></td>
       <td><%= loan.principal_amount %></td>
       <td><%= loan.interest_rate %></td>
       <td>

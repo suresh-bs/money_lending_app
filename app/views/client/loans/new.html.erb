@@ -1,5 +1,10 @@
+<h1>Loan Form</h1>
 <%= form_for @loan, url: client_loans_path do |form| %>
-  principal_amount: <%= form.text_field :principal_amount %><br />
-  interest_rate: <%= form.text_field :interest_rate %><br />
-  <%= form.submit %>
+  <div class="mb-3">
+    <%= form.label :principal_amount, 'Principal Amount', class: "form-label" %>
+    <%= form.text_field :principal_amount, class: "form-control" %><br />
+    <%= form.label :interest_rate, 'Interest Rate', class: "form-label" %><br />
+    <%= form.text_field :interest_rate, class: "form-control" %><br />
+    <%= form.submit "Request New Loan", class: "btn btn-primary" %>
+  </div>
 <% end %>
