@@ -1,7 +1,7 @@
 <h1>Loan Form</h1>
 <div class="">
   <%= form_for @loan, url: admin_loan_path(@loan) do |form| %>
-    <span class="badge text-bg-secondary"><%= @loan.state_text %></span><br>
+    Loan Status: <span class="badge text-bg-secondary"><%= @loan.state_text %></span><br>
     <%= form.label :principal_amount, 'Principal Amount', class: "form-label" %>
     <%= form.text_field :principal_amount, class: "form-control" %><br />
     <%= form.label :interest_rate, 'Interest Rate', class: "form-label" %>
@@ -23,3 +23,4 @@
     <%= link_to "Approve", approve_admin_loan_path(@loan), data: { turbo_method: :patch } %>
   <% end %>
 </div>
+<%= render partial: "shared/loan_event_logs", locals: {loan: @loan} %>

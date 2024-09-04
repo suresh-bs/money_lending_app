@@ -10,7 +10,8 @@ class Loan < ApplicationRecord
                   waiting_for_adjustment_acceptance: 5,
                   readjustment_requested: 6 }
 
-  before_create :assign_next_interest_time
+  before_save :assign_next_interest_time
+  after_save :create_loan_event_log
 
   def repaid!
     admin = User.admin.first
@@ -37,6 +38,12 @@ class Loan < ApplicationRecord
   private
 
   def assign_next_interest_time
-    self.next_interest_time ||= Time.zone.now + 5.minutes
+    if open?
+      self.next_interest_time ||= Time.zone.now + 5.minutes
+    end
+  end
+
+  def create_loan_event_log
+    loan_event_logs.create(state: state, principal_amount: principal_amount, interest_rate: interest_rate, user_id: user_id)
   end
 end

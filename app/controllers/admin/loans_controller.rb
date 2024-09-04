@@ -10,8 +10,7 @@ class Admin::LoansController < ApplicationController
 
   def update
     @loan = Loan.find(params[:id])
-    @loan.update(loan_params)
-    @loan.waiting_for_adjustment_acceptance!
+    @loan.update(loan_params.merge(state: :waiting_for_adjustment_acceptance))
     redirect_to edit_admin_loan_path(@loan)
   end
 

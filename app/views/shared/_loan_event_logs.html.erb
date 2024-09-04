@@ -1,0 +1,24 @@
+<br />
+<h2>Loan Logs</h2>
+<% if loan.loan_event_logs.present? %>
+  <table class="table table-striped">
+    <tr>
+      <th>State</th>
+      <th>Principal Amount</th>
+      <th>Interest Rate</th>
+      <th>Action Made by</th>
+      <th>Action Made At</th>
+    </tr>
+    <% loan.loan_event_logs.each do |loan_event_log| %>
+      <tr>
+        <td><%= loan_event_log.state_text %></td>
+        <td><%= loan_event_log.principal_amount %></td>
+        <td><%= loan_event_log.interest_rate %></td>
+        <td><%= loan_event_log.waiting_for_adjustment_acceptance? ? "Admin" : loan_event_log.user.email %></td>
+        <td><%= loan_event_log.created_at.strftime("%b %d, %Y, %I:%M %p") %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <center>No loans logs to show</center><br>
+<% end %>

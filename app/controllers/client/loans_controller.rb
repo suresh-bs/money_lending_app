@@ -23,8 +23,7 @@ class Client::LoansController < ApplicationController
 
   def update
     @loan = Loan.find(params[:id])
-    @loan.update(loan_params)
-    @loan.readjustment_requested!
+    @loan.update(loan_params.merge(state: :readjustment_requested))
     redirect_to edit_client_loan_path(@loan)
   end
 
