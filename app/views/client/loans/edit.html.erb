@@ -1,7 +1,12 @@
 <h1>Loan Form</h1>
-<%= form_for @loan, url: client_loan_path(@loan) do |form| %>
-  <div class="mb-3">
-  Loan Status: <span class="badge text-bg-secondary"><%= @loan.state_text %></span><br>
+<br>
+<% if @loan.open? %>
+  Principal Amount: <%= @loan.principal_amount %><br>
+  Interest Rate: <%= @loan.interest_rate %>
+<% else %>
+  <%= form_for @loan, url: client_loan_path(@loan) do |form| %>
+    Loan Status: <span class="badge text-bg-secondary"><%= @loan.state_text %></span><br>
+    <br>
     <%= form.label :principal_amount, 'Principal Amount', class: "form-label" %>
     <%= form.text_field :principal_amount, class: "form-control" %><br />
     <%= form.label :interest_rate, 'Interest Rate', class: "form-label" %>
@@ -9,11 +14,12 @@
     <% if @loan.waiting_for_adjustment_acceptance? %>
       <%= form.submit "Change and Request", class: "btn btn-primary" %>
     <% end %>
-  </div>
+  <% end %>
 <% end %>
 <% if @loan.open? %>
-  Amount to Pay: <%= @loan.total_amount_to_pay %><br>
-  Tenure Limit: <%= @loan.tenure_limit %><br>
+  <br>
+  Amount to Pay: <%= text_field_tag :total_amount_to_pay, @loan.total_amount_to_pay, class: "form-label" %><br>
+  Tenure Limit: <%= text_field_tag :tenure_limit, @loan.tenure_limit, class: "form-label" %><br>
 <% end %>
 
 <% if @loan.approved? || @loan.waiting_for_adjustment_acceptance? %>
