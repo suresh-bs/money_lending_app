@@ -12,8 +12,8 @@
   </div>
 <% end %>
 <% if @loan.open? %>
-  Amount to Pay: <%= @loan.total_amount_to_pay %>
-  <br>
+  Amount to Pay: <%= @loan.total_amount_to_pay %><br>
+  Tenure Limit: <%= @loan.tenure_limit %><br>
 <% end %>
 
 <% if @loan.approved? || @loan.waiting_for_adjustment_acceptance? %>

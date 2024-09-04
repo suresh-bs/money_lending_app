@@ -14,7 +14,14 @@
         <td><%= loan_event_log.state_text %></td>
         <td><%= loan_event_log.principal_amount %></td>
         <td><%= loan_event_log.interest_rate %></td>
-        <td><%= loan_event_log.waiting_for_adjustment_acceptance? ? "Admin" : loan_event_log.user.email %></td>
+        <td>
+          <% if ["waiting_for_adjustment_acceptance", "approved", ].include? loan_event_log.state %>
+            Admin
+          <% end %>
+          <% if ["requested", "open", "readjustment_requested"].include? loan_event_log.state %>
+             <%= loan_event_log.user.email %>
+          <% end %>
+        </td>
         <td><%= loan_event_log.created_at.strftime("%b %d, %Y, %I:%M %p") %></td>
       </tr>
     <% end %>

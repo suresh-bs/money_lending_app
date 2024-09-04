@@ -35,6 +35,18 @@ class Loan < ApplicationRecord
          .join(' ')
   end
 
+  def tenure_limit
+    amount = principal_amount
+    i_amount = principal_amount * interest_rate / 100
+    term = 0
+    loop do
+      term += 1
+      amount = amount + i_amount
+      break if amount > user.wallet.amount
+    end
+    term
+  end
+
   private
 
   def assign_next_interest_time

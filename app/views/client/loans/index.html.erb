@@ -1,3 +1,5 @@
 <h1>Your Loans</h1>
 <%= render partial: "shared/loan", locals: {loans: @loans} %>
-<%= link_to "Request Loan", new_client_loan_path %>
+<% if @loans.open.empty? %>
+  <%= link_to "Request Loan", new_client_loan_path %>
+<% end %>
