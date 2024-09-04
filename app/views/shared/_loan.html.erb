@@ -1,31 +1,35 @@
-<br>
-<table class="table table-striped">
-  <tr>
-    <th>State</th>
-    <th>Principal Amount</th>
-    <th>Interest Rate</th>
-    <th>ction</th>
-    <% if current_user.admin? %>
-      <th>Client Email</th>
-    <% end %>
-  </tr>
-  <% loans.each do |loan| %>
+<% if @loans.present? %>
+  <br>
+  <table class="table table-striped">
     <tr>
-      <td><%= loan.state_text %></td>
-      <td><%= loan.principal_amount %></td>
-      <td><%= loan.interest_rate %></td>
-      <td>
-        <% if current_user.admin? %>
-          <%= link_to "Show", edit_admin_loan_path(loan) %>
-        <% else %>
-          <%= link_to "Show", edit_client_loan_path(loan) %>
-        <% end %>
-      </td>
+      <th>State</th>
+      <th>Principal Amount</th>
+      <th>Interest Rate</th>
+      <th>Action</th>
       <% if current_user.admin? %>
-        <td>
-          <%= loan.user.email %>
-        </td>
+        <th>Client Email</th>
       <% end %>
     </tr>
-  <% end %>
-</table>
+    <% loans.each do |loan| %>
+      <tr>
+        <td><%= loan.state_text %></td>
+        <td><%= loan.principal_amount %></td>
+        <td><%= loan.interest_rate %></td>
+        <td>
+          <% if current_user.admin? %>
+            <%= link_to "Show", edit_admin_loan_path(loan) %>
+          <% else %>
+            <%= link_to "Show", edit_client_loan_path(loan) %>
+          <% end %>
+        </td>
+        <% if current_user.admin? %>
+          <td>
+            <%= loan.user.email %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  No loans to show<br>
+<% end %>
