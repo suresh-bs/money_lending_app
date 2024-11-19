@@ -58,7 +58,7 @@ end
 
 gem "bcrypt", "~> 3.1"
 
-gem "pry", "~> 0.14.2"
+gem "pry", "~> 0.15.0"
 
 gem "sidekiq", "~> 7.3"
 
